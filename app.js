@@ -1,5 +1,5 @@
 var app = require('express')();
-var server = require('http').createServer(app);
+var server = require('./config/server_config')(app)
 
 /** CONFIGURATION **/
 
