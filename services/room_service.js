@@ -40,10 +40,8 @@ module.exports = function(io, beacon_config){
     socket_io = socket;
     console.log('Socket connected');
     console.log(socket);
-
     socket.emit('config', beacon_config);
     socket.emit('room_status', room_status);
-
     socket.on('disconnect', handleDisconnect);
     socket.on('enterRoom', handleEnterRoom);
     socket.on('leaveRoom', handleLeaveRoom);
