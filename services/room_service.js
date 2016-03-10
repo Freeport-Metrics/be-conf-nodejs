@@ -34,12 +34,10 @@ var room_mapping = {
   '10344_31183': 2
 }
 
-module.exports = function(io, beacon_config, logger){
+module.exports = function(io, beacon_config){
   io.on('connection', function (socket) {
     console.log('Socket connected');
     console.log(socket);
-
-    logger.info('Client connected');
 
     socket.emit('config', beacon_config);
     socket.emit('room_status', room_status);
