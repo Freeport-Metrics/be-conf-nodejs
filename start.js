@@ -3,12 +3,13 @@ const cluster = require('cluster'),
         'SIGHUP', 'SIGINT', 'SIGQUIT', 'SIGILL', 'SIGTRAP', 'SIGABRT',
         'SIGBUS', 'SIGFPE', 'SIGUSR1', 'SIGSEGV', 'SIGUSR2', 'SIGTERM'
       ],
-      production = process.env.NODE_ENV == 'production';
+      production = process.env.NODE_ENV == 'production',
+      staging = process.env.NODE_ENV == 'staging';
 
 var stopping = false;
 
 cluster.on('disconnect', function(worker) {
-  if (production) {
+  if (staging) {
     if (!stopping) {
       cluster.fork();
     }
@@ -23,7 +24,7 @@ if (cluster.isMaster) {
   for (var i = 0; i < workerCount; i++) {
     cluster.fork();
   }
-  if (production) {
+  if (staging) {
     stopSignals.forEach(function (signal) {
       process.on(signal, function () {
         console.log(`Got ${signal}, stopping workers...`);

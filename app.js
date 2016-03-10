@@ -1,13 +1,9 @@
 var app = require('express')();
 var server = require('http').createServer(app);
-var env = process.env
-
-server.listen(env.NODE_PORT || 3000, env.NODE_IP || 'localhost', function () {
-  console.log(`Application worker ${process.pid} started... port ${env.NODE_PORT}`);
-});;
 
 /** CONFIGURATION **/
-
+// Adding env configurtion
+require('./config/env_config')(server)
 // Adding routes to Bootstraper
 require('./routes/routes')(app)
 // Adding Static resources for minifaction

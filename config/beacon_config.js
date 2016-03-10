@@ -2,7 +2,6 @@
  * Created by Matuszewski on 10/03/16.
  */
 
-
 // THIS FILE CONTAINS DEFAULT BEACON CONFIG
 /*
 In future we should think about moving this config to database and add some interface
