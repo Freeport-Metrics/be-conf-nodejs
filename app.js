@@ -17,7 +17,7 @@ require('./config/error_handlers')(app);
 // Adding socket.io to bootstrapper
 var io = require('./config/socket.io')(server);
 // Adding beacons configuration to bootstraper
-var beacon_config = require('./config/socket.io')();
+var beacon_config = require('./config/beacon_config')();
 
 /** SERVICES **/
 

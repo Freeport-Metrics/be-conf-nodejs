@@ -39,7 +39,7 @@ module.exports = function(io, beacon_config){
     console.log('Socket connected');
     console.log(socket);
 
-    socket.emit('config', 'test');
+    socket.emit('config', beacon_config);
     socket.emit('room_status', room_status);
 
     socket.on('disconnect', handleDisconnect);
