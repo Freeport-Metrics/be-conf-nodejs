@@ -39,7 +39,7 @@ module.exports = function(io, beacon_config){
     console.log('Socket connected');
     console.log(socket);
 
-    socket.emit('config', beacon_config);
+    socket.emit('config', 'test');
     socket.emit('room_status', room_status);
 
     socket.on('disconnect', handleDisconnect);
@@ -48,15 +48,18 @@ module.exports = function(io, beacon_config){
   });
 
   function handleDisconnect(socket){
-
+    console.log('Client disconnected')
+    console.log(socket);
   }
 
   function handleEnterRoom(socket){
-
+    console.log('Client entered room')
+    console.log(socket);
   }
 
   function handleLeaveRoom(socket){
-
+    console.log('Client left room')
+    console.log(socket);
   }
 
   return {

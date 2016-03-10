@@ -19,8 +19,6 @@ var io = require('./config/socket.io')(server);
 // Adding beacons configuration to bootstraper
 var beacon_config = require('./config/socket.io')();
 
-
-
 /** SERVICES **/
 
 var room_service = require('./services/room_service')(io, beacon_config);
