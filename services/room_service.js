@@ -58,6 +58,7 @@ module.exports = function(io, beacon_config){
   function handleEnterRoom(data){
     console.log('Client entered room')
     console.log(data);
+    data = JSON.parse(data);
     var current_room_index = room_mapping[data.room_id]
     console.log(room_mapping)
     console.log(room_status)
@@ -71,6 +72,7 @@ module.exports = function(io, beacon_config){
   function handleLeaveRoom(data){
     console.log('Client left room')
     console.log(data);
+    data = JSON.parse(data);
     var current_room_index = room_mapping[data.room_id]
     var user_index = room_status.rooms[current_room_index].users.indexOf(data.user_id);
     if( user_index >= 0){
