@@ -6,6 +6,7 @@
 /*
 In future we should think about moving this config to database and add some interface
 for configuration
+b_id : Major_minor numbers of beacon
  */
 /*
  {
@@ -30,18 +31,18 @@ module.exports = function(){
   return {
     config: [
       {
-        b_id: 1312312312312,
-        label: 'Konferencyjna 1',
+        b_id: '5919_60231',
+        label: 'Flight Control Room',
         room_radius: 4,
       },
       {
-        b_id: 1312312312313,
-        label: 'Konferencyjna 2',
+        b_id: '45287_53858',
+        label: 'Sala Konferencyjna',
         room_radius: 3,
       },
       {
-        b_id: 1312312312314,
-        label: 'Konferencyjna 3',
+        b_id: '10344_31183',
+        label: 'Carnegie Hall',
         room_radius: 2,
       }
     ]

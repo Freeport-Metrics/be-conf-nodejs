@@ -18,9 +18,12 @@ require('./config/error_handlers')(app);
 var io = require('./config/socket.io')(server);
 // Adding beacons configuration to bootstraper
 var beacon_config = require('./config/socket.io')();
+var logger = require('./config/logging_config')();
+
+
 
 /** SERVICES **/
 
-var room_service = require('./services/room_service')(io, beacon_config);
+var room_service = require('./services/room_service')(io, beacon_config, logger);
 
 module.exports = app;
