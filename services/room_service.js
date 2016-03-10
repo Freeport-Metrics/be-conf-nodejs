@@ -61,6 +61,7 @@ module.exports = function(io, beacon_config){
     console.log(room_mapping)
     console.log(room_status)
     console.log(current_room_index)
+    console.log(data.user_id)
     if(room_status.rooms[current_room_index].users.indexOf(data.user_id) < 0){
       room_status.rooms[current_room_index].users.push(data.user_id);
     }
