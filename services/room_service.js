@@ -35,6 +35,7 @@ module.exports = function(io, beacon_config){
     console.log('Socket connected');
     //console.log(socket);
 
+    io.sockets.emit('user_connected', socket.id);
     io.sockets.emit('config', beacon_config);
     io.sockets.emit('room_status', room_status);
     socket.on('disconnect', handleDisconnect);
