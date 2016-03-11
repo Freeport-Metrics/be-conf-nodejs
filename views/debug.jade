@@ -4,6 +4,7 @@ extends layout
 
 block content
    h1= title
-   p Welcome to debug
+   p
+    strong This is beacon debug
    div(ng-controller="DebugController")
      div(ng-repeat="event in events track by $index" ng-bind="event")

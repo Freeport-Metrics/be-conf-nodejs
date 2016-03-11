@@ -8,7 +8,7 @@ angular.module('beatconf.controllers')
 
       $scope.events = []
 
-      $scope.socket = io.connect(window.location.origin, {
+      $scope.socket = io.connect("http://beatconf-freeportmetrics.rhcloud.com:8000/", {
         multiplex: false
       });
 
