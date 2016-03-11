@@ -17,7 +17,12 @@ module.exports = function (dir) {
 
   var resources = {
     js: [
-
+      "node_modules/angular/angular.min.js",
+      "node_modules/socket.io-client/socket.io.js",
+      "public/javascripts/app.js",
+      "public/javascripts/app/controllers/controller_wrapper.js",
+      "public/javascripts/app/controllers/debug_controller.js",
+      "public/javascripts/app/controllers/room_controller.js"
     ],
     css: [
 

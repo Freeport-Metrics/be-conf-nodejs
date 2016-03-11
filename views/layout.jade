@@ -3,5 +3,7 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
-  body
+    each resource in static_resources.js
+      script(src='/#{resource}')
+  body(ng-app="beatconf")
     block content

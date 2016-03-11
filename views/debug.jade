@@ -1,0 +1,9 @@
+//
+   Created by Matuszewski on 11/03/16.
+extends layout
+
+block content
+   h1= title
+   p Welcome to debug
+   div(ng-controller="DebugController")
+     div(ng-repeat="event in events track by $index" ng-bind="event")

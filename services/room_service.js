@@ -30,13 +30,13 @@ var room_mapping = {
 }
 
 module.exports = function(io, beacon_config){
-  var active_socket = {};
+
   io.on('connection', function (socket) {
-    active_socket = socket;
     console.log('Socket connected');
     //console.log(socket);
-    socket.emit('config', beacon_config);
-    socket.emit('room_status', room_status);
+
+    io.sockets.emit('config', beacon_config);
+    io.sockets.emit('room_status', room_status);
     socket.on('disconnect', handleDisconnect);
     socket.on('enterRoom', handleEnterRoom);
     socket.on('leaveRoom', handleLeaveRoom);
@@ -46,7 +46,7 @@ module.exports = function(io, beacon_config){
     console.log('Client disconnected')
     console.log(data);
     removeUserFromRoom(this.client.id);
-    active_socket.emit('room_status', room_status);
+    io.sockets.emit('room_status', room_status);
   }
 
   function handleEnterRoom(data){
@@ -58,7 +58,7 @@ module.exports = function(io, beacon_config){
       var client_id = this.client.id
       room_status.rooms[current_room_index].users.push({id: client_id, name: data.user_id});
     }
-    active_socket.emit('room_status', room_status);
+    io.sockets.emit('room_status', room_status);
   }
 
   function handleLeaveRoom(data){
@@ -70,7 +70,7 @@ module.exports = function(io, beacon_config){
     if( user_index >= 0){
       room_status.rooms[current_room_index].users.splice(user_index, 1);
     }
-    active_socket.emit('room_status', room_status);
+    io.sockets.emit('room_status', room_status);
   }
 
   function getRoomIndex(room_id){
