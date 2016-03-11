@@ -29,3 +29,20 @@ To run application:
 And navigate to [http://localhost:3000/](http://localhost:3000/)
 
 Openshift version is located at [http://beatconf-freeportmetrics.rhcloud.com/](http://beatconf-freeportmetrics.rhcloud.com/)
+
+## Deployment
+
+You can deploy application to openshift 2 ways:
+
+* Automatically ( Using Bitrise CI )
+* Manually ( Your SSH key has to be added to openshift application )
+  * git remote add openshift -f [ssh://56e15f7f89f5cf738e000167@beatconf-freeportmetrics.rhcloud.com/~/git/beatconf.git/](ssh://56e15f7f89f5cf738e000167@beatconf-freeportmetrics.rhcloud.com/~/git/beatconf.git/)
+  * git merge openshift/master -s recursive -X ours
+  * git push openshift master
+
+*If you have permission denied error remember to add your ssh key to ssh-agen via command*
+
+    ssh-add ~/.ssh/<yourprivatekey>
+
+
+
