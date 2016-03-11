@@ -33,17 +33,17 @@ module.exports = function(){
       {
         b_id: '5919_60231',
         label: 'Flight Control Room',
-        room_radius: 4,
+        room_radius: 4.0,
       },
       {
         b_id: '45287_53858',
         label: 'Sala Konferencyjna',
-        room_radius: 3,
+        room_radius: 3.0,
       },
       {
         b_id: '10344_31183',
         label: 'Carnegie Hall',
-        room_radius: 2,
+        room_radius: 2.0,
       }
     ]
   }

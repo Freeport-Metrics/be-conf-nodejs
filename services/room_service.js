@@ -30,11 +30,11 @@ var room_mapping = {
 }
 
 module.exports = function(io, beacon_config){
-  var socket_io = {};
+  var active_socket = {};
   io.on('connection', function (socket) {
-    socket_io = socket;
+    active_socket = socket;
     console.log('Socket connected');
-    console.log(socket);
+    //console.log(socket);
     socket.emit('config', beacon_config);
     socket.emit('room_status', room_status);
     socket.on('disconnect', handleDisconnect);
@@ -45,38 +45,38 @@ module.exports = function(io, beacon_config){
   function handleDisconnect(data){
     console.log('Client disconnected')
     console.log(data);
-    socket_io.emit('room_status', room_status);
+    active_socket.emit('room_status', room_status);
   }
 
   function handleEnterRoom(data){
     console.log('Client entered room')
     console.log(data);
     var data = JSON.parse(data);
-    var current_room_index = room_mapping[data.room_id]
-    console.log(room_mapping)
-    console.log(room_status)
-    console.log(current_room_index)
-    console.log(data.user_id)
-    if(room_status.rooms[current_room_index].users.indexOf(data.user_id) < 0){
+    var current_room_index = getRoomIndex(data.room_id)
+    if(!isUserInRoom(current_room_index, data.user_id)){
       room_status.rooms[current_room_index].users.push(data.user_id);
     }
-    socket_io.emit('room_status', room_status);
+    active_socket.emit('room_status', room_status);
   }
 
   function handleLeaveRoom(data){
     console.log('Client left room')
     console.log(data);
     var data = JSON.parse(data);
-    var current_room_index = room_mapping[data.room_id]
+    var current_room_index = getRoomIndex(data.room_id)
     var user_index = room_status.rooms[current_room_index].users.indexOf(data.user_id);
     if( user_index >= 0){
       room_status.rooms[current_room_index].users.splice(user_index, 1);
     }
-    socket_io.emit('room_status', room_status);
+    active_socket.emit('room_status', room_status);
   }
 
-  function getRoomIndex(){
+  function getRoomIndex(room_id){
+    return room_mapping[room_id]
+  }
 
+  function isUserInRoom(current_room_index, user_id){
+    return room_status.rooms[current_room_index].users.indexOf(user_id) >= 0;
   }
 
   return {
