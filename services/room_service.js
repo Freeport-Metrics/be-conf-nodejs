@@ -45,6 +45,7 @@ module.exports = function(io, beacon_config){
   function handleDisconnect(data){
     console.log('Client disconnected')
     console.log(data);
+    removeUserFromRoom(this.client.id);
     active_socket.emit('room_status', room_status);
   }
 
@@ -54,7 +55,8 @@ module.exports = function(io, beacon_config){
     var data = JSON.parse(data);
     var current_room_index = getRoomIndex(data.room_id)
     if(!isUserInRoom(current_room_index, data.user_id)){
-      room_status.rooms[current_room_index].users.push(data.user_id);
+      var client_id = this.client.id
+      room_status.rooms[current_room_index].users.push({id: client_id, name: data.user_id});
     }
     active_socket.emit('room_status', room_status);
   }
@@ -64,7 +66,7 @@ module.exports = function(io, beacon_config){
     console.log(data);
     var data = JSON.parse(data);
     var current_room_index = getRoomIndex(data.room_id)
-    var user_index = room_status.rooms[current_room_index].users.indexOf(data.user_id);
+    var user_index = findUserInRoom(current_room_index, data.user_id);
     if( user_index >= 0){
       room_status.rooms[current_room_index].users.splice(user_index, 1);
     }
@@ -76,7 +78,43 @@ module.exports = function(io, beacon_config){
   }
 
   function isUserInRoom(current_room_index, user_id){
-    return room_status.rooms[current_room_index].users.indexOf(user_id) >= 0;
+    var result = false;
+    if(room_status.rooms[current_room_index].users.length == 0){
+      return result;
+    }
+    room_status.rooms[current_room_index].users.forEach(function(element){
+        if(element.name == user_id){
+          result = true;
+          return;
+        }
+    })
+    return result;
+  }
+
+  function findUserInRoom(current_room_index, user_id){
+    var i = -1;
+    room_status.rooms[current_room_index].users.forEach(function(element, index){
+      if(element.name == user_id){
+        i = index;
+      }
+    })
+   return i;
+  }
+
+  function removeUserFromRoom(client_id){
+    var u_index = -1;
+    var r_index = -1;
+    room_status.rooms.forEach(function(room, room_index){
+      room.users.forEach(function(user,user_index){
+        if(user.id == client_id){
+          u_index = user_index;
+          r_index = room_index;
+        }
+      })
+    })
+    if(u_index > -1 && r_index > -1){
+      room_status.rooms[r_index].users.splice(u_index, 1);
+    }
   }
 
   return {
