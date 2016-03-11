@@ -23,7 +23,7 @@ angular.module('beatconf.controllers')
       $scope.printDebug = printDebug;
 
       function handleUserConnected(client){
-        $scope.printDebug('NEW CLIENT CONNECTED', JSON.stringify(this.id), JSON.stringify(client))
+        $scope.printDebug('NEW CLIENT CONNECTED', JSON.stringify(client), JSON.stringify(client))
       }
 
       function handleConnect(){
