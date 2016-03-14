@@ -17,8 +17,8 @@ module.exports = function (app, dir, static_resources) {
     });
   });
 
-  //app.use('/node_modules/font-awesome/fonts/', express.static(dir + '/node_modules/font-awesome/fonts/'));
-  //app.use('/fonts', express.static(dir + '/node_modules/font-awesome/fonts/'));
+  app.use('/node_modules/font-awesome/fonts/', express.static(dir + '/node_modules/font-awesome/fonts/'));
+  app.use('/fonts', express.static(dir + '/node_modules/font-awesome/fonts/'));
   app.use('/public', express.static(dir + '/public'));
   app.use(express.static(path.join(dir, 'public')));
 

@@ -25,7 +25,8 @@ module.exports = function (dir) {
       "public/javascripts/app/controllers/room_controller.js"
     ],
     css: [
-
+      "node_modules/font-awesome/css/font-awesome.css",
+      "public/stylesheets/style.css"
     ]
   };
 

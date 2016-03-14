@@ -3,8 +3,14 @@
 extends layout
 
 block content
-   h1= title
-   p
-    strong This is beacon debug
-   div(ng-controller="DebugController")
-     div(ng-repeat="event in events track by $index" ng-bind="event")
+   div(class="container" ng-controller="DebugController")
+     div(class="container-title")
+         h2 Beacon Debug
+     div(class="container-content container-scrollable")
+        div(ng-repeat="event in events track by $index" class="container-list-element")
+            span(ng-bind="event.event" class="block bold f-16 content-header ")
+            span(ng-bind="event.client_id" class="block")
+            span(ng-bind="event.data" class="block")
+
+
+

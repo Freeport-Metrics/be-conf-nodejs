@@ -23,40 +23,40 @@ angular.module('beatconf.controllers')
       $scope.printDebug = printDebug;
 
       function handleUserConnected(client){
-        $scope.printDebug('NEW CLIENT CONNECTED', JSON.stringify(client), JSON.stringify(client))
+        $scope.printDebug('NEW CLIENT CONNECTED', client, client)
       }
 
       function handleConnect(){
-        $scope.printDebug('CLIENT CONNECTED', JSON.stringify(this.id), JSON.stringify({}))
+        $scope.printDebug('CLIENT CONNECTED', this.id, {})
       }
 
       function handleConfig(data){
-        $scope.printDebug('CONFIG SENT', JSON.stringify(this.id), JSON.stringify(data))
+        $scope.printDebug('CONFIG SENT', this.id, data)
       }
 
       function handleRoomStatus(data){
-        $scope.printDebug('ROOM STATUS SENT', JSON.stringify(this.id), JSON.stringify(data))
+        $scope.printDebug('ROOM STATUS SENT', this.id, data)
       }
 
       function handleDisconnect(data){
-        $scope.printDebug('CLIENT DISCONNECTED', JSON.stringify(this.id), JSON.stringify(data))
+        $scope.printDebug('CLIENT DISCONNECTED', this.id, data)
       }
 
       function handleEnterRoom(data){
-        $scope.printDebug('USER ENTERED ROOM', JSON.stringify(this.id), JSON.stringify(data))
+        $scope.printDebug('USER ENTERED ROOM', this.id, data)
       }
 
       function handleLeaveRoom(data){
-        $scope.printDebug('USER LEFT ROOM', JSON.stringify(this.id), JSON.stringify(data))
+        $scope.printDebug('USER LEFT ROOM', this.id, data)
       }
 
       function printDebug(event_name, data1, data2){
         $scope.$apply(function(){
-          $scope.events.push('================')
-          $scope.events.push(event_name)
-          $scope.events.push(data1)
-          $scope.events.push(data2)
-          $scope.events.push('================')
+          $scope.events.unshift({
+            "event": event_name,
+            "client_id": data1,
+            "data": JSON.stringify(data2)
+          })
         })
 
       }

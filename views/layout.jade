@@ -2,7 +2,9 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css')
+    each resource in static_resources.css
+      link(rel='stylesheet', href='/#{resource}')
     each resource in static_resources.js
       script(src='/#{resource}')
   body(ng-app="beatconf")
