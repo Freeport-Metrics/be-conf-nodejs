@@ -5,7 +5,7 @@
 var room_status = require('../storage/room_status')();
 var room_mapping = require('../dictionaries/room_mapping')();
 
-module.exports = function(io, beacon_config){
+module.exports = function(io, beacon_config, slack_service){
 
   io.on('connection', function (socket) {
     io.sockets.emit('user_connected', socket.id);
@@ -26,7 +26,12 @@ module.exports = function(io, beacon_config){
     var current_room_index = getRoomIndex(data.room_id)
     if(!isUserInRoom(current_room_index, data.user_id)){
       var client_id = this.client.id
-      room_status.rooms[current_room_index].users.push({id: client_id, name: data.user_id});
+      var user = {id: client_id, name: data.user_id};
+      room_status.rooms[current_room_index].users.push(user);
+      slack_service.sendEnteredStatus(
+          room_status.rooms[current_room_index],
+          user
+      );
     }
     io.sockets.emit('room_status', room_status);
   }
@@ -36,9 +41,15 @@ module.exports = function(io, beacon_config){
     var current_room_index = getRoomIndex(data.room_id)
     var user_index = findUserInRoom(current_room_index, data.user_id);
     if( user_index >= 0){
+      var user = room_status.rooms[current_room_index].users[user_index];
       room_status.rooms[current_room_index].users.splice(user_index, 1);
+      slack_service.sendLeftStatus(
+          room_status.rooms[current_room_index],
+          user
+      );
     }
     io.sockets.emit('room_status', room_status);
+
   }
 
   function getRoomIndex(room_id){
@@ -72,16 +83,19 @@ module.exports = function(io, beacon_config){
   function removeUserFromRoom(client_id){
     var u_index = undefined;
     var r_index = undefined;
+    var u_data = {};
     room_status.rooms.forEach(function(room, room_index){
       room.users.forEach(function(user,user_index){
         if(user.id == client_id){
           u_index = user_index;
+          u_data = user;
           r_index = room_index;
         }
       })
     })
-    if(u_index && r_index ){
+    if(u_index >= 0 && r_index >= 0){
       room_status.rooms[r_index].users.splice(u_index, 1);
+      slack_service.sendLeftStatus(room_status.rooms[r_index], u_data);
     }
   }
 

@@ -1,5 +1,7 @@
 var app = require('express')();
-var server = require('http').createServer(app);
+var http = require('http');
+var server = http.createServer(app);
+var request = require('request');
 
 /** CONFIGURATION **/
 // Adding env configurtion
@@ -26,7 +28,8 @@ var io = require('./config/socket.io')(server);
 var beacon_config = require('./config/beacon_config')();
 
 /** SERVICES **/
+var slack_service = require('./services/slack_service')(request);
+var room_service = require('./services/room_service')(io, beacon_config, slack_service);
 
-var room_service = require('./services/room_service')(io, beacon_config);
 
 module.exports = app;
