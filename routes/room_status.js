@@ -11,7 +11,6 @@ function room_status(req, res) {
   }
 }
 
-
 function formatResponseForSlack(){
   var slack_response = ""
   rooms.rooms.forEach(function(room,index){
@@ -27,6 +26,7 @@ function formatResponseForSlack(){
     }
     slack_response += "/n"
   })
+  return slack_response;
 }
 
 module.exports = function (app) {
