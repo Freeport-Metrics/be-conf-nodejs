@@ -44,5 +44,11 @@ You can deploy application to openshift 2 ways:
 
     ssh-add ~/.ssh/<yourprivatekey>
 
+* Also you have to set up environment variables
+    * install rhc client and setup application
+    * then add environment variables to openshift using command
 
+*Example variables are included in enb.sample file*
+
+    rhc set-env VARIABLE1=VALUE1 VARIABLE2=VALUE2 -a myapp
 
