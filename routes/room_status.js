@@ -4,28 +4,30 @@
 var rooms = require('../storage/room_status')();
 
 function room_status(req, res) {
-  res.send(formatResponse());
+  console.log(req.params)
+  if(req.params.token){
+    res.send(formatResponseForSlack());
+  }else{
+    res.redirect('/')
+  }
 }
 
-function formatResponse(){
-  var response = "";
+
+function formatResponseForSlack(){
+  var slack_response = ""
   rooms.rooms.forEach(function(room,index){
-    response += "========" + "</br>"
-    response +=  "<strong>" + room.label + "</strong>" + "</br>"
-    response +=  "Users inside: <strong>" + room.users.length + "</strong>" + "</br>"
-    if (room.users.length > 0){
-      response +=  "Users : "
+    var occupied = room.users.length > 0;
+    var occupied_icon = occupied ? ":red_circle:" :":white_circle:";
+    var occupied_status = occupied ? "OCCUPIED" : "FREE";
+    slack_response += occupied_icon + " " +  room.label + " is currently " + occupied_status
+    if(occupied){
+      slack_response += " by "
       room.users.forEach(function(user, index){
-        response += " " + "<strong>" + user.name + "</strong>"
+        slack_response += user.name
       });
-      response += "</br>"
-      response += "Status: <strong>OCCUPIED</strong> </br>"
-    }else{
-      response += "Status: <strong>FREE</strong> </br>"
     }
-    response += "========" + "</br>"
+    slack_response += "/n"
   })
-  return response
 }
 
 module.exports = function (app) {
