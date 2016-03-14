@@ -4,7 +4,7 @@
 var rooms = require('../storage/room_status')();
 
 function room_status(req, res) {
-  console.log(req.params)
+  console.log(req)
   if(req.params.token){
     res.send(formatResponseForSlack());
   }else{
