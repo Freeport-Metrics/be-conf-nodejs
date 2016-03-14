@@ -2,32 +2,8 @@
  * Created by Matuszewski on 09/03/16.
  */
 
-var room_status = {
-  rooms: [
-    {
-      room_id: '5919_60231',
-      label: 'Flight Control Room',
-      users: []
-    },
-    {
-      room_id: '45287_53858',
-      label: 'Sala Konferencyjna',
-      users: []
-    },
-    {
-      room_id: '10344_31183',
-      label: 'Carnegie Hall',
-      users: [
-      ]
-    }
-  ]
-}
-
-var room_mapping = {
-  '5919_60231': 0,
-  '45287_53858': 1,
-  '10344_31183': 2
-}
+var room_status = require('../storage/room_status')();
+var room_mapping = require('../dictionaries/room_mapping')();
 
 module.exports = function(io, beacon_config){
 

@@ -40,7 +40,7 @@ You can deploy application to openshift 2 ways:
   * git merge openshift/master -s recursive -X ours
   * git push openshift master
 
-*If you have permission denied error remember to add your ssh key to ssh-agen via command*
+*If you have permission denied error remember to add your ssh key to ssh-agent via command*
 
     ssh-add ~/.ssh/<yourprivatekey>
 

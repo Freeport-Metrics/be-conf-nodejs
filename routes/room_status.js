@@ -1,10 +1,10 @@
 /**
  * Created by Matuszewski on 10/03/16.
  */
-var room_status = require('../services/room_service')
+var rooms = require('../storage/room_status')();
 
 function room_status(req, res) {
-  res.send(JSON.stringify(room_status,null,2));
+  res.send(JSON.stringify(rooms,null,2));
 }
 
 module.exports = function (app) {
