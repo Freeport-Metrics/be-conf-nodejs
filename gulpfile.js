@@ -1,26 +1,24 @@
 var gulp = require('gulp');
-
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var cssnano = require('gulp-cssnano');
-var jade = require('gulp-jade');
 var static_resources = require('./config/static_resources')(__dirname);
-var useref = require('gulp-useref');
-var gulpif = require('gulp-if');
 var rev = require('gulp-rev');
 
 function buildJS() {
-  return gulp.src('./views/index.jade')
-      .pipe(jade({
-        locals: {static_resources: static_resources},
-        pretty: true
-      }))
-      .pipe(useref({searchPath: '.'}))
-      .pipe(gulpif('*.js', uglify({mangle: false})))
-      .pipe(gulpif('*.css', cssnano()))
-      //.pipe( rev() )
-      .pipe(gulp.dest('./public/'))
+  return gulp.src(static_resources.js)
+      .pipe(uglify({mangle: false}))
+      .pipe(concat('all.min.js'))
+    //.pipe( rev() )
+      .pipe(gulp.dest('./public/dist'))
+}
 
+function buildCSS() {
+  return gulp.src(static_resources.css)
+      .pipe(cssnano())
+      .pipe(concat('all.min.css'))
+    //.pipe( rev() )
+      .pipe(gulp.dest('./public/dist'))
 }
 
 function buildFonts(){
@@ -29,13 +27,15 @@ function buildFonts(){
       .pipe(gulp.dest('./public/fonts/'));
 }
 
-gulp.task('jade', buildJS);
+gulp.task('js', buildJS);
+gulp.task('css', buildCSS)
 gulp.task('fonts', buildFonts)
-gulp.task('default', ['jade', 'fonts'], function () {
+gulp.task('default', ['js', 'css', 'fonts'], function () {
 });
 
 module.exports = function(){
   return {
+    css: buildCSS,
     js: buildJS,
     fonts: buildFonts
   };

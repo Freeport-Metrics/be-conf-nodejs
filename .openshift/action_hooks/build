@@ -1,4 +1,5 @@
 #!/bin/bash
 cd $OPENSHIFT_REPO_DIR
+node -e 'require("./gulpfile.js")().css()'
 node -e 'require("./gulpfile.js")().js()'
 node -e 'require("./gulpfile.js")().fonts()'
