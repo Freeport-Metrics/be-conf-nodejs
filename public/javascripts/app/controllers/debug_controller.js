@@ -12,15 +12,20 @@ angular.module('beatconf.controllers')
         multiplex: false
       });
 
-      $scope.socket.on('user_connected', handleUserConnected)
-      $scope.socket.on('connect', handleConnect)
-      $scope.socket.on('config', handleConfig)
+      $scope.socket.on('user_connected', handleUserConnected);
+      $scope.socket.on('user_disconnected', handleUserDisconnected);
+      $scope.socket.on('connect', handleConnect);
+      $scope.socket.on('config', handleConfig);
       $scope.socket.on('room_status', handleRoomStatus)
       $scope.socket.on('disconnect', handleDisconnect)
       $scope.socket.on('enterRoom', handleEnterRoom);
       $scope.socket.on('leaveRoom', handleLeaveRoom);
 
       $scope.printDebug = printDebug;
+
+      function handleUserDisconnected(client){
+        $scope.printDebug('CLIENT DISCONNECTED', client, client)
+      }
 
       function handleUserConnected(client){
         $scope.printDebug('NEW CLIENT CONNECTED', client, client)

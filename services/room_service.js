@@ -16,8 +16,10 @@ module.exports = function(io, beacon_config, slack_service){
     socket.on('leaveRoom', handleLeaveRoom);
   });
 
-  function handleDisconnect(data){
-    removeUserFromRoom(this.client.id);
+  function handleDisconnect(){
+    var client_id = this.client.id;
+    removeUserFromRoom(client_id);
+    io.sockets.emit('user_disconnected', client_id);
     io.sockets.emit('room_status', room_status);
   }
 
