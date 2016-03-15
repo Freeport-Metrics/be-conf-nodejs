@@ -1,13 +1,18 @@
 extends layout
 
 block content
+  div(class="wrapper")
+    div(class="container block-inline")
+      div(class="container-content" class="p-md")
+        img(src="/images/fm_logo.png")
     div(class="container" ng-controller="RoomController")
-      div(class="container-title")
-        h2 Be@conf ( FM Room Status )
+      div(class="container-title container-header")
+        p(class="header") Be@conf
+        p(class="subheader") Below you have conference room occupation status monitored in real time with use of beacons
       div(class="container-content container-scrollable")
         div(ng-repeat="room in room_status" class="container-list-element")
           span(class="fa fa-circle fa-2x pull-right" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
-          span(class="fa fa-user block" ng-bind-template=" {{room.users.length}}" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
           span(ng-bind-template="{{room.label}} ( ID: {{room.room_id}} ) " class="bold f-16 content-header" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
           span(ng-repeat="user in room.users" class="block" ng-bind="user.name")
           span(class="free block" ng-if="isRoomFree(room)") FREE
+          span(class="fa fa-user block pull-right" ng-bind-template="{{room.users.length}}" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
