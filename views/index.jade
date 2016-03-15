@@ -9,5 +9,5 @@ block content
           span(class="fa fa-circle fa-2x pull-right" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
           span(class="fa fa-user block" ng-bind-template=" {{room.users.length}}" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
           span(ng-bind-template="{{room.label}} ( ID: {{room.room_id}} ) " class="bold f-16 content-header" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
-          span(ng-repeat="user in room.users" class="block" ng-bind="user.name")
+          span(ng-repeat="user in room.users" class="block" ng-bind-template="{{user.name}}-{{user.id}}")
           span(class="free block" ng-if="isRoomFree(room)") FREE
