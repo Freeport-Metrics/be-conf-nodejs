@@ -34,4 +34,9 @@ gulp.task('fonts', buildFonts)
 gulp.task('default', ['jade', 'fonts'], function () {
 });
 
-module.exports = buildJS;
+module.exports = function(){
+  return {
+    js: buildJS,
+    fonts: buildFonts
+  };
+}
