@@ -1,11 +1,15 @@
 doctype html
 html
   head
-    title= title
+    title Be@conf - Freeportmetrics
     link(href='https://fonts.googleapis.com/css?family=Open+Sans:300' rel='stylesheet' type='text/css')
+    // build:css /dist/all.min.css
     each resource in static_resources.css
       link(rel='stylesheet', href='/#{resource}')
+    // endbuild
+    // build:js /dist/all.min.js
     each resource in static_resources.js
       script(src='/#{resource}')
+    // endbuild
   body(ng-app="beatconf")
     block content
