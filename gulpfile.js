@@ -15,7 +15,7 @@ function buildJS() {
         locals: {static_resources: static_resources},
         pretty: true
       }))
-      .pipe(useref({searchPath: '.'}))
+      .pipe(useref({searchPath: './'}))
       .pipe(gulpif('*.js', uglify({mangle: false})))
       .pipe(gulpif('*.css', cssnano()))
       //.pipe( rev() )
