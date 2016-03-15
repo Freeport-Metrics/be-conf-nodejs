@@ -82,22 +82,14 @@ module.exports = function(io, beacon_config, slack_service){
   }
 
   function removeUserFromRoom(client_id){
-    var u_index = undefined;
-    var r_index = undefined;
-    var u_data = {};
     room_status.rooms.forEach(function(room, room_index){
       room.users.forEach(function(user,user_index){
         if(user.id == client_id){
-          u_index = user_index;
-          u_data = user;
-          r_index = room_index;
+          room_status.rooms[room_index].users.splice(user_index, 1);
+          slack_service.sendLeftStatus(room_status.rooms[room_index], user);
         }
       })
     })
-    if(u_index >= 0 && r_index >= 0){
-      room_status.rooms[r_index].users.splice(u_index, 1);
-      slack_service.sendLeftStatus(room_status.rooms[r_index], u_data);
-    }
   }
 
   return {
