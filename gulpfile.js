@@ -9,9 +9,8 @@ var useref = require('gulp-useref');
 var gulpif = require('gulp-if');
 var rev = require('gulp-rev');
 
-
-gulp.task('jade', function () {
-  gulp.src('./views/index.jade')
+function buildJS() {
+  return gulp.src('./views/index.jade')
       .pipe(jade({
         locals: {static_resources: static_resources},
         pretty: true
@@ -21,9 +20,10 @@ gulp.task('jade', function () {
       .pipe(gulpif('*.css', cssnano()))
       .pipe( rev() )
       .pipe(gulp.dest('./public/'))
-});
+}
 
-
+gulp.task('jade', buildJS);
 gulp.task('default', ['jade'], function () {
 });
 
+module.exports = buildJS;
