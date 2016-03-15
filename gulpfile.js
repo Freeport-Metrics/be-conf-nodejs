@@ -18,12 +18,20 @@ function buildJS() {
       .pipe(useref({searchPath: '.'}))
       .pipe(gulpif('*.js', uglify({mangle: false})))
       .pipe(gulpif('*.css', cssnano()))
-      .pipe( rev() )
+      //.pipe( rev() )
       .pipe(gulp.dest('./public/'))
+
+}
+
+function buildFonts(){
+  return gulp.src(
+    './node_modules/font-awesome/fonts/fontawesome-webfont.*')
+      .pipe(gulp.dest('./public/fonts/'));
 }
 
 gulp.task('jade', buildJS);
-gulp.task('default', ['jade'], function () {
+gulp.task('fonts', buildFonts)
+gulp.task('default', ['jade', 'fonts'], function () {
 });
 
 module.exports = buildJS;

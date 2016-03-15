@@ -1,4 +1,5 @@
 var fs = require('fs');
+var path = require('path');
 
 module.exports = function (dir) {
 
@@ -15,19 +16,25 @@ module.exports = function (dir) {
     return result;
   }
 
-  var resources = {
-    js: [
-      "node_modules/angular/angular.min.js",
-      "node_modules/socket.io-client/socket.io.js",
-      "public/javascripts/app.js",
-      "public/javascripts/app/controllers/controller_wrapper.js",
-      "public/javascripts/app/controllers/debug_controller.js",
-      "public/javascripts/app/controllers/room_controller.js"
-    ],
-    css: [
-      "node_modules/font-awesome/css/font-awesome.css",
-      "public/stylesheets/style.css"
-    ]
+  var resources = {};
+
+  var js = [
+    "node_modules/angular/angular.min.js",
+    "node_modules/socket.io-client/socket.io.js",
+    "public/javascripts/app.js",
+    "public/javascripts/app/controllers/controller_wrapper.js",
+    "public/javascripts/app/controllers/debug_controller.js",
+    "public/javascripts/app/controllers/room_controller.js"
+  ]
+
+  var css = [
+    "node_modules/font-awesome/css/font-awesome.css",
+    "public/stylesheets/style.css"
+  ]
+
+  resources = {
+    js: js,
+    css: css
   };
 
   return{
