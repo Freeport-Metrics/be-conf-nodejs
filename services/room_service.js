@@ -6,12 +6,11 @@ var room_status = require('../storage/room_status')();
 var room_mapping = require('../dictionaries/room_mapping')();
 
 module.exports = function(io, beacon_config, slack_service){
-
   io.on('connection', function (socket) {
     io.sockets.emit('user_connected', socket.id);
     io.sockets.emit('config', beacon_config);
     io.sockets.emit('room_status', room_status);
-    socket.on('disconnect', handleDisconnect);
+    socket.once('disconnect', handleDisconnect);
     socket.on('enterRoom', handleEnterRoom);
     socket.on('leaveRoom', handleLeaveRoom);
   });

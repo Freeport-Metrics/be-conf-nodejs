@@ -4,5 +4,5 @@
 
 
 module.exports = function(server){
-  return require('socket.io')(server);
+  return require('socket.io')(server, {'pingTimeout': 10000});
 }
