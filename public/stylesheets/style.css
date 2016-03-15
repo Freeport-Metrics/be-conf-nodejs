@@ -84,6 +84,14 @@ a {
   display: inline-block;
 }
 
+.text-align-left{
+  text-align: left;
+}
+
+.text-align-right{
+  text-align: right;
+}
+
 .pull-left{
   float: left;
 }
