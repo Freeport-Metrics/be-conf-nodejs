@@ -18,7 +18,7 @@ module.exports = function(request_service){
   function prepareMessage(room, user, event){
     var text = "User *" + user.name + "* has "+event+" the *" +room.label+ "* \n"
     if(room.users.length > 0){
-      text += "Room is *OCCUPIED* by: " + room.users.join(',') + "\n";
+      text += "Room is *OCCUPIED* by: " + room.users.toString() + "\n";
     }else{
       text += "Room is *FREE*"
     }
