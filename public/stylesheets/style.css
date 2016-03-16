@@ -116,6 +116,22 @@ a {
   padding: 20px;
 }
 
+.m-l-xs{
+  margin-left: 5px;
+}
+
+.m-l-sm{
+  margin-left: 10px;
+}
+
+.m-l-md{
+  margin-left: 15px;
+}
+
+.m-l-lg{
+  margin-left: 20px;
+}
+
 /* ROOM STATSU */
 
 .free{
