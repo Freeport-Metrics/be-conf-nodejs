@@ -21,7 +21,11 @@ angular.module('beatconf.controllers')
         }
 
         function isRoomFree(room){
-            return room.users.length == 0
+            if(room){
+                return room.users.length == 0
+            }else{
+                return true;
+            }
         }
 
     })

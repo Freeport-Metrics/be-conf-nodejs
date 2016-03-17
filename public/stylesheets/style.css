@@ -80,6 +80,10 @@ a {
   display: block;
 }
 
+.relative{
+  position: relative;
+}
+
 .block-inline{
   display: inline-block;
 }
@@ -132,7 +136,7 @@ a {
   margin-left: 20px;
 }
 
-/* ROOM STATSU */
+/* ROOM STATUS */
 
 .free{
  color: #1AB35E;
@@ -140,4 +144,44 @@ a {
 
 .occupied{
   color: #cd2229;
+}
+
+/* Office image style */
+.office {
+  display: block;
+  max-width: 580px;
+  max-height: 1000px;
+  width: auto;
+  height: auto;
+}
+
+.room-free{
+  background-color: rgba(0, 255, 12, 0.25) !important;
+}
+
+#conf_room{
+  width: 58px;
+  height: 104px;
+  position: absolute;
+  background-color: rgba(255,0,0,0.25);
+  right: 101px;
+  top: 60px;
+}
+
+#flight_room{
+  width: 58px;
+  height: 81px;
+  position: absolute;
+  background-color: rgba(255,0,0,0.25);
+  right: 298px;
+  top: 206px;
+}
+
+#carneige_room{
+  width: 48px;
+  height: 83px;
+  position: absolute;
+  background-color: rgba(255,0,0,0.25);
+  right: 176px;
+  top: 206px;
 }

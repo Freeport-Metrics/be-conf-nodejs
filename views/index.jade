@@ -9,7 +9,7 @@ block content
       div(class="container-title container-header")
         p(class="header") Be@conf
         p(class="subheader") Below you have conference room occupation status monitored in real time with use of beacons
-      div(class="container-content container-scrollable")
+      div(class="container-content")
         div(ng-repeat="room in room_status" class="container-list-element")
           span(class="fa fa-circle fa-2x pull-right" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
           span(ng-bind-template="{{room.label}} ( ID: {{room.room_id}} ) " class="bold f-16 content-header" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
@@ -18,3 +18,10 @@ block content
           span(class="block text-align-right" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
             i(class="fa fa-user")
             span(class="m-l-xs" ng-bind-template="{{room.users.length}}")
+      div(class="container-content relative")
+        div(id="flight_room" ng-class="{'room-free': isRoomFree(room_status[0])}")
+        div(id="conf_room" ng-class="{'room-free': isRoomFree(room_status[1])}")
+        div(id="carneige_room" ng-class="{'room-free': isRoomFree(room_status[2])}")
+        img(class="office" src="/images/office.png" usemap="#occupation_map")
+
+
