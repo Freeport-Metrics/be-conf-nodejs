@@ -7,7 +7,7 @@ var CronJob = require('cron').CronJob;
 module.exports = function(task){
 
   var job = new CronJob({
-    cronTime: '00 39 14 * * 1-5',
+    cronTime: '00 41 14 * * 1-5',
     onTick: task,
     //onTick: function() {
     //  /*
@@ -17,7 +17,7 @@ module.exports = function(task){
     //   */
     //},
     start: false,
-    timeZone: 'Poland/Warsaw'
+    timeZone: 'Europe/Warsaw'
   });
 
   job.start();
