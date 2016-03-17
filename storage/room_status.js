@@ -11,7 +11,7 @@ var room_status = {
     },
     {
       room_id: '45287_53858',
-      label: 'Sala Konferencyjna',
+      label: 'Sala Kongresowa',
       users: []
     },
     {
