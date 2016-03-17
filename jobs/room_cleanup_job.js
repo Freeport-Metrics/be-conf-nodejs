@@ -5,20 +5,5 @@
 var CronJob = require('cron').CronJob;
 
 module.exports = function(task){
-
-  var job = new CronJob({
-    cronTime: '00 41 14 * * 1-5',
-    onTick: task,
-    //onTick: function() {
-    //  /*
-    //   * Runs every weekday (Monday through Friday)
-    //   * at 11:30:00 AM. It does not run on Saturday
-    //   * or Sunday.
-    //   */
-    //},
-    start: false,
-    timeZone: 'Europe/Warsaw'
-  });
-
-  job.start();
+  new CronJob('00 00 15 * * 1-5', task, true,  'Europe/Warsaw');
 }

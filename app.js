@@ -32,6 +32,6 @@ require('./config/error_handlers')(app);
 
 //** CRON JOBS **/
 
-require('./jobs/room_cleanup_job')(room_service.removeUsersFromRoom);
+require('./jobs/room_cleanup_job')(room_rest_service.removeUsersFromRoom);
 
 module.exports = app;
