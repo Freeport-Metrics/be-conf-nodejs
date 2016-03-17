@@ -15,11 +15,7 @@ angular.module('beatconf.controllers')
       $scope.socket.on('user_connected', handleUserConnected);
       $scope.socket.on('user_disconnected', handleUserDisconnected);
       $scope.socket.on('connect', handleConnect);
-      $scope.socket.on('config', handleConfig);
       $scope.socket.on('room_status', handleRoomStatus)
-      $scope.socket.on('disconnect', handleDisconnect)
-      $scope.socket.on('enterRoom', handleEnterRoom);
-      $scope.socket.on('leaveRoom', handleLeaveRoom);
 
       $scope.printDebug = printDebug;
 
@@ -35,24 +31,8 @@ angular.module('beatconf.controllers')
         $scope.printDebug('CLIENT CONNECTED', this.id, {})
       }
 
-      function handleConfig(data){
-        $scope.printDebug('CONFIG SENT', this.id, data)
-      }
-
       function handleRoomStatus(data){
         $scope.printDebug('ROOM STATUS SENT', this.id, data)
-      }
-
-      function handleDisconnect(data){
-        $scope.printDebug('CLIENT DISCONNECTED', this.id, data)
-      }
-
-      function handleEnterRoom(data){
-        $scope.printDebug('USER ENTERED ROOM', this.id, data)
-      }
-
-      function handleLeaveRoom(data){
-        $scope.printDebug('USER LEFT ROOM', this.id, data)
       }
 
       function printDebug(event_name, data1, data2){
@@ -63,7 +43,6 @@ angular.module('beatconf.controllers')
             "data": JSON.stringify(data2)
           })
         })
-
       }
 
     })

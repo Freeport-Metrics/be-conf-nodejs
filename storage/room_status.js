@@ -17,8 +17,7 @@ var room_status = {
     {
       room_id: '10344_31183',
       label: 'Carnegie Hall',
-      users: [
-      ]
+      users: []
     }
   ]
 }

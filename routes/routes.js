@@ -6,11 +6,11 @@
 var fs = require('fs');
 var path = require('path');
 
-module.exports = function (app){
+module.exports = function (app, room_rest_service){
   fs.readdirSync('./routes').forEach(function(file){
     if ( file == path.basename(__filename)){
       return;
     }
-    require('./' + file)(app)
+    require('./' + file)(app,room_rest_service)
   })
 }
