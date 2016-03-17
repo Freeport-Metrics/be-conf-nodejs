@@ -30,4 +30,8 @@ require('./routes/routes')(app,room_rest_service)
 // Adding Error Handlers to Bootstraper
 require('./config/error_handlers')(app);
 
+//** CRON JOBS **/
+
+require('./jobs/room_cleanup_job')(room_service.removeUsersFromRoom);
+
 module.exports = app;
