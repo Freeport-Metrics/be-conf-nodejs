@@ -4,10 +4,9 @@ block content
   div(class="wrapper")
     div(class="container block-inline")
       div(class="container-content" class="p-md")
-        img(src="/images/fm_logo.png")
+        img(class="logo" src="/images/beaconf_logo.png")
     div(class="container" ng-controller="RoomController")
       div(class="container-title container-header")
-        p(class="header") Be@conf
         p(class="subheader") Below you have conference room occupation status monitored in real time with use of beacons
       div(class="container-content")
         div(ng-repeat="room in room_status" class="container-list-element")
