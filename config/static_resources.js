@@ -29,7 +29,8 @@ module.exports = function (dir) {
 
   var css = [
     "node_modules/font-awesome/css/font-awesome.css",
-    "public/stylesheets/style.css"
+    "public/stylesheets/style.css",
+    "public/stylesheets/bootstrap.css"
   ]
 
   resources = {

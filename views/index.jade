@@ -1,26 +1,29 @@
 extends layout
 
 block content
-  div(class="wrapper")
-    div(class="container block-inline")
-      div(class="container-content" class="p-md")
-        img(class="logo" src="/images/beaconf_logo.png")
+  div(class="container-bootstrap")
+    div(class="")
+      div(class="row" class="col-lg-12 col-md-12 col-sm-12" )
+        img(src="/images/beaconf_logo.png" style="width: 100%; max-width: 615px")
     div(class="container" ng-controller="RoomController")
-      div(class="container-title container-header")
-        p(class="subheader") Below you have conference room occupation status monitored in real time with use of beacons
-      div(class="container-content")
-        div(ng-repeat="room in room_status" class="container-list-element")
-          span(class="fa fa-circle fa-2x pull-right" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
-          span(ng-bind-template="{{room.label}} ( ID: {{room.room_id}} ) " class="bold f-16 content-header" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
-          span(ng-repeat="user in room.users" class="block" ng-bind="user.name")
-          span(class="free block" ng-if="isRoomFree(room)") FREE
-          span(class="block text-align-right" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
-            i(class="fa fa-user")
-            span(class="m-l-xs" ng-bind-template="{{room.users.length}}")
-      div(class="container-content relative")
-        div(id="flight_room" ng-class="{'room-free': isRoomFree(room_status[0])}")
-        div(id="conf_room" ng-class="{'room-free': isRoomFree(room_status[1])}")
-        div(id="carneige_room" ng-class="{'room-free': isRoomFree(room_status[2])}")
-        img(class="office" src="/images/office.png" usemap="#occupation_map")
+      div(class="row" style="max-width: 615px; padding-top: 5px")
+        div(class="container-title container-header col-lg-12 col-md-12 col-sm-12")
+          p(class="subheader") Below you have conference room occupation status monitored in real time with use of beacons
+      div(class="row")
+        div(class="container-content col-lg-12 col-md-12" style="max-width: 615px")
+          div(ng-repeat="room in room_status" class="container-list-element")
+            span(class="fa fa-circle fa-2x" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
+            span(ng-bind-template="{{room.label}} ( ID: {{room.room_id}} ) " class="bold f-16 content-header" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
+            span(ng-repeat="user in room.users" class="block" ng-bind="user.name")
+            span(class="free block" ng-if="isRoomFree(room)") FREE
+            span(class="block text-align-right" ng-class="{'free': isRoomFree(room), 'occupied': !isRoomFree(room)}")
+              i(class="fa fa-user")
+              span(class="m-l-xs" ng-bind-template="{{room.users.length}}")
+      //div(class="row")
+      //  div(class="container-content relative")
+      //    div(id="flight_room" class="col-lg-6 col-md-6 col-sm-6" ng-class="{'room-free': isRoomFree(room_status[0])}")
+      //    div(id="conf_room" class="col-lg-6 col-md-6 col-sm-6" ng-class="{'room-free': isRoomFree(room_status[1])}")
+      //    div(id="carneige_room" class="col-lg-6 col-md-6 col-sm-6" ng-class="{'room-free': isRoomFree(room_status[2])}")
+      //    img(class="office col-lg-6 col-md-6 col-sm-6" src="/images/office.png" usemap="#occupation_map")
 
 
